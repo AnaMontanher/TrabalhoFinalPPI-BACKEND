@@ -1,0 +1,15 @@
+{
+  "name": "trabalhofinalback",
+  "version": "1.0.0",
+  "description": "pasta backend do projeto do trabalho final",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "backend",
+    "servidor"
+  ],
+  "author": "Ana Paula Hiraiwa Motanher",
+  "license": "ISC"
+}

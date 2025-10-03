@@ -8,18 +8,13 @@ export default class LivroDAO {
     if (livro instanceof Livro) {
       const conexao = await conectar();
       const sql =
-        "INSERT INTO livro(liv_id,liv_titulo,liv_autor,cli_cpf) VALUES (?,?,?,?)";
-      const parametros = [
-        livro.id,
-        livro.titulo,
-        livro.autor,
-        livro.cliente.cpf,
-      ];
+        "INSERT INTO livro(liv_titulo,liv_autor,cli_cpf) VALUES (?,?,?)";
+      const parametros = [livro.titulo, livro.autor, livro.cliente];
       await conexao.execute(sql, parametros);
       conexao.release(); //devolve a coneção para o pool
     }
   }
-  async alterar(livro) {
+  async atualizar(livro) {
     if (livro instanceof Livro) {
       const conexao = await conectar();
       const sql =
@@ -70,7 +65,7 @@ export default class LivroDAO {
     id = id || " ";
     const conexao = await conectar();
     const sql =
-      "SELECT * from Cliente cli INNER JOIN Livro liv ON cli.cli_cpf = liv.cli_cpf order by cli.cli_nome ASC";
+      "SELECT * from Cliente cli INNER JOIN Livro liv ON cli.cli_cpf = liv.cli_cpf WHERE liv.liv_id = ?";
     const [registros] = await conexao.query(sql, [id]);
     await conexao.release();
 

@@ -1,3 +1,4 @@
+import ClienteDAO from "../DB/clienteDAO.js";
 export default class Cliente {
   #cpf;
   #nome;
@@ -96,9 +97,9 @@ export default class Cliente {
     const clienteDAO = new ClienteDAO();
     await clienteDAO.gravar(this);
   }
-  async alterar() {
+  async atualizar() {
     const clienteDAO = new ClienteDAO();
-    await clienteDAO.alterar(this);
+    await clienteDAO.atualizar(this);
   }
   async excluir() {
     const clienteDAO = new ClienteDAO();

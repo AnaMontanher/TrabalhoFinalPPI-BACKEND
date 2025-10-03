@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "pasta backend do projeto do trabalho final",
   "main": "index.js",
+  "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -11,5 +12,11 @@
     "servidor"
   ],
   "author": "Ana Paula Hiraiwa Motanher",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^5.1.0",
+    "express-session": "^1.18.2",
+    "mysql2": "^3.15.1"
+  }
 }

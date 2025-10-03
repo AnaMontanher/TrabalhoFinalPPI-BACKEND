@@ -22,7 +22,7 @@ export default class ClienteDAO {
       conexao.release(); //devolve a coneção para o pool
     }
   }
-  async alterar(cliente) {
+  async atualizar(cliente) {
     if (cliente instanceof Cliente) {
       const conexao = await conectar();
       const sql =
@@ -70,7 +70,7 @@ export default class ClienteDAO {
     }
     return listaClientes;
   }
-  async consultarcpf(cpf) {
+  async consultarCPF(cpf) {
     cpf = cpf || "";
     const conexao = await conectar();
     const sql = "SELECT * from cliente WHERE cli_cpf = ? order by cli_nome";

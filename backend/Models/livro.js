@@ -1,10 +1,12 @@
+import LivroDAO from "../DB/livroDAO.js";
+
 export default class Livro {
   #id;
   #titulo;
   #autor;
   #cliente;
 
-  constructor(id = 0, titulo = "", autor = "", cliente = "") {
+  constructor(id = null, titulo = "", autor = "", cliente = null) {
     this.#id = id;
     this.#titulo = titulo;
     this.#autor = autor;
@@ -58,9 +60,9 @@ export default class Livro {
     const livroDAO = new LivroDAO();
     await livroDAO.gravar(this);
   }
-  async alterar() {
+  async atualizar() {
     const livroDAO = new LivroDAO();
-    await livroDAO.alterar(this);
+    await livroDAO.atualizar(this);
   }
   async excluir() {
     const livroDAO = new LivroDAO();

@@ -1,7 +1,7 @@
 import express from "express";
 import cors from "cors";
-// import cursoRouter from "./Routes/rotaCurso.js";
-// import docenteRouter from "./Routes/rotaDocente.js";
+import livroRouter from "./Routes/rotaLivro.js";
+import clienteRouter from "./Routes/rotaCliente.js";
 
 const hostname = "0.0.0.0";
 const porta = 4000;
@@ -19,9 +19,9 @@ app.use(
 //configurar o servidor para receber dados no formado json
 app.use(express.json()); //camada que sabe tratar os dados no formato JSON
 
-// app.use("/curso", cursoRouter); //camada que sabe atender requisições endpoint curso
+app.use("/livro", livroRouter); //camada que sabe atender requisições endpoint curso
 
-// app.use("/docente", docenteRouter); //camada que sabe atender requisições endpoint docente
+app.use("/cliente", clienteRouter); //camada que sabe atender requisições endpoint docente
 
 app.listen(porta, hostname, () => {
   console.log(`Servidor rodando em http://${hostname}:${porta}`);

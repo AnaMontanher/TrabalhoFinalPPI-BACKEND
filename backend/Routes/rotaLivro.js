@@ -5,7 +5,8 @@ const livroRouter = Router();
 const livroCtrl = new LivroCtrl();
 livroRouter
   .get("/", livroCtrl.consultar)
-  .get("/:id", livroCtrl.consultar) //dois tipos de get pois um é para pesquisas gerais e outro para pesquisa específica com parâmetro
+  .get("/id/:id", livroCtrl.consultar)
+  .get("/cpf/:cpf", livroCtrl.consultar) //dois tipos de get pois um é para pesquisas gerais e outro para pesquisa específica com parâmetro
   .post("/", livroCtrl.gravar)
   .put("/:id", livroCtrl.atualizar)
   .delete("/:id", livroCtrl.excluir);

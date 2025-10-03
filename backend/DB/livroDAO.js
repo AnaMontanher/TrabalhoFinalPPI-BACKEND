@@ -90,4 +90,33 @@ export default class LivroDAO {
     }
     return listaLivros;
   }
+  async consultarPorCliente(cpf) {
+    cpf = cpf || " ";
+    const conexao = await conectar();
+    const sql =
+      "SELECT * from Cliente cli INNER JOIN Livro liv ON cli.cli_cpf = liv.cli_cpf WHERE liv.cli_cpf = ?";
+    const [registros] = await conexao.query(sql, [cpf]);
+    await conexao.release();
+
+    let listaLivros = [];
+    for (const registro of registros) {
+      const cliente = new Cliente(
+        registro.cli_cpf,
+        registro.cli_nome,
+        registro.cli_telefone,
+        registro.cli_dataNasc,
+        registro.cli_sexo,
+        registro.cli_email,
+        registro.cli_senha
+      );
+      const livro = new Livro(
+        registro.liv_id,
+        registro.liv_titulo,
+        registro.liv_autor,
+        cliente
+      );
+      listaLivros.push(livro);
+    }
+    return listaLivros;
+  }
 }

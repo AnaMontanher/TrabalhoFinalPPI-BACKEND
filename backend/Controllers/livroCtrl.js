@@ -135,6 +135,7 @@ export default class LivroCrtl {
   consultar(requisicao, resposta) {
     if (requisicao.method === "GET") {
       const id = requisicao.params.id;
+      const cpf = requisicao.params.cpf;
       const livro = new Livro();
       if (id) {
         livro
@@ -157,6 +158,29 @@ export default class LivroCrtl {
             resposta.status(500).json({
               status: false,
               mensagem: "Erro ao consultar o livro: " + erro.message,
+            });
+          });
+      } else if (cpf) {
+        livro
+          .consultarPorCliente(cpf)
+          .then((listaLivros) => {
+            if (listaLivros.length > 0) {
+              resposta.status(200).json({
+                status: true,
+                mensagem: "Consulta realizada com sucesso!",
+                livros: listaLivros,
+              });
+            } else {
+              resposta.status(404).json({
+                status: false,
+                mensagem: "Livros não encontrado.",
+              });
+            }
+          })
+          .catch((erro) => {
+            resposta.status(500).json({
+              status: false,
+              mensagem: "Erro ao consultar livros: " + erro.message,
             });
           });
       } else {

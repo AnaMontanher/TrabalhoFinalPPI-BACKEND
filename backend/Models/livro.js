@@ -76,4 +76,8 @@ export default class Livro {
     const livroDAO = new LivroDAO();
     return await livroDAO.consultarID(id); //único método que RETORNA alguma informação
   }
+  async consultarPorCliente(cpf) {
+    const livroDAO = new LivroDAO();
+    return await livroDAO.consultarPorCliente(cpf); //único método que RETORNA alguma informação
+  }
 }

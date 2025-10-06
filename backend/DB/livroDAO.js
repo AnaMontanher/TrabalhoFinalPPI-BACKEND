@@ -36,7 +36,7 @@ export default class LivroDAO {
   async consultar() {
     const conexao = await conectar();
     const sql =
-      "SELECT * from Cliente cli INNER JOIN Livro liv ON cli.cli_cpf = liv.cli_cpf order by cli.cli_nome ASC";
+      "SELECT * from Cliente cli INNER JOIN Livro liv ON cli.cli_cpf = liv.cli_cpf order by liv.liv_id";
     const [registros] = await conexao.query(sql);
     await conexao.release();
 
@@ -65,7 +65,7 @@ export default class LivroDAO {
     id = id || " ";
     const conexao = await conectar();
     const sql =
-      "SELECT * from Cliente cli INNER JOIN Livro liv ON cli.cli_cpf = liv.cli_cpf WHERE liv.liv_id = ?";
+      "SELECT * from Cliente cli INNER JOIN Livro liv ON cli.cli_cpf = liv.cli_cpf WHERE liv.liv_id = ? order by liv.liv_nome";
     const [registros] = await conexao.query(sql, [id]);
     await conexao.release();
 
@@ -94,7 +94,7 @@ export default class LivroDAO {
     cpf = cpf || " ";
     const conexao = await conectar();
     const sql =
-      "SELECT * from Cliente cli INNER JOIN Livro liv ON cli.cli_cpf = liv.cli_cpf WHERE liv.cli_cpf = ?";
+      "SELECT * from Cliente cli INNER JOIN Livro liv ON cli.cli_cpf = liv.cli_cpf WHERE liv.cli_cpf = ? order by liv.liv_id";
     const [registros] = await conexao.query(sql, [cpf]);
     await conexao.release();
 

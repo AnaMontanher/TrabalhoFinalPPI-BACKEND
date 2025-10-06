@@ -51,7 +51,7 @@ export default class ClienteDAO {
   }
   async consultar() {
     const conexao = await conectar();
-    const sql = "SELECT * FROM cliente order by cli_nome ";
+    const sql = "SELECT * from Cliente order by cli_nome ";
     const [registros] = await conexao.query(sql);
     await conexao.release();
 
@@ -73,7 +73,7 @@ export default class ClienteDAO {
   async consultarCPF(cpf) {
     cpf = cpf || "";
     const conexao = await conectar();
-    const sql = "SELECT * from cliente WHERE cli_cpf = ? order by cli_nome ASC";
+    const sql = "SELECT * from cliente WHERE cli_cpf = ? order by cli_nome";
     const [registros] = await conexao.query(sql, [cpf]);
     await conexao.release();
 
